@@ -1,0 +1,22 @@
+#!/bin/bash
+
+tune_folder="/home/gaudu/pyapprentice-1.1.0/bin/tune2/"
+
+if [ -d "$tune_folder" ]; then
+    folders=$(find "$tune_folder" -mindepth 1 -maxdepth 1 -type d | wc -l)
+else
+    echo "folder not found: $tune_folder"
+fi
+
+for ((i=0; i<$folders; i++)); do
+    formatted_i=$(printf "%02d" $i)
+    template_path="$formatted_i/template.dat"
+
+    if [ -e "$template_path" ]; then
+        lines=$(paste -s -d ' ' "$template_file")
+
+        ./main1009 $formatted_i $lines
+    else
+        echo "File not found: $template_path"
+    fi
+done

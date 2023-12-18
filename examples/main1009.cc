@@ -3,7 +3,7 @@
 // Keyword: analysis; rivet; hA collisions; tuning; apprentice
 
 // Usage: ./main1009 TuneFolderNumber parA parB parC
-// TODO write a bash script to get the TuneFolderNumber and parameters from apprentice
+// Can be run using ./apprentice_script
 
 #include "Pythia8/HeavyIons.h"
 #include "Pythia8/Pythia.h"
