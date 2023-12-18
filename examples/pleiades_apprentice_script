@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd ~/PYTHIA/pythia8310/examples/
+make main1009
+
+# apprentice_script located at root directory /beegfs/gaudu/apprentice_script of Pleiades cluster
+sbatch --partition=normal --mail-type="ALL" --mail-user="gaudu@uni-wuppertal.de" --job-name="main1009" ~/apprentice_script.sh
