@@ -18,11 +18,11 @@ int main(int argc, char *argv[]) {
     return 1; 
   }
 
-  int nEvents = 100; //100000
+  int nEvents = 100;
  
   // Logfile initialization
   const bool doLog = true;
-  string out = std::string("main1003_tune2_")+std::string(argv[1])+std::string("_100");
+  string out = std::string("main1003_tune2_")+std::string(argv[1])+std::string("_")+std::to_string(nEvents);
   ofstream logBuf;
   std::streambuf* oldCout;
   if(doLog) {
