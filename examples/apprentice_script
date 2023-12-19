@@ -13,10 +13,10 @@ for ((i=0; i<$folders; i++)); do
     template_path=$tune_folder"$formatted_i/template.dat"
 
     if [ -e "$template_path" ]; then
-        lines=$(paste -s -d ' ' "$template_file")
-
-        ./main1009 $formatted_i $lines
+        mapfile -t lines < "$input_file"
     else
         echo "File not found: $template_path"
     fi
+
+    ./main1009 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]}
 done
