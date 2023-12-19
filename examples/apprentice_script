@@ -10,7 +10,7 @@ fi
 
 for ((i=0; i<$folders; i++)); do
     formatted_i=$(printf "%02d" $i)
-    template_path="$formatted_i/template.dat"
+    template_path=$tune_folder"$formatted_i/template.dat"
 
     if [ -e "$template_path" ]; then
         lines=$(paste -s -d ' ' "$template_file")
