@@ -18,11 +18,11 @@ int main(int argc, char *argv[]) {
     return 1; 
   }
 
-  int nEvents = 100; #100000
+  int nEvents = 100; //100000
  
   // Logfile initialization
   const bool doLog = true;
-  string out = std::string("main1003_tune2_")+std::string(argv[1])+std:string("_100");
+  string out = std::string("main1003_tune2_")+std::string(argv[1])+std::string("_100");
   ofstream logBuf;
   std::streambuf* oldCout;
   if(doLog) {
@@ -36,11 +36,11 @@ int main(int argc, char *argv[]) {
   pythia.readString("Beams:idB = 1000060120");
   pythia.readString("Beams:frameType = 2");
   pythia.readString("Beams:eA = 158.");
-  pythia.readString("Beams:eB = "+pythia.particleData.m0(1000060120)/12);
+  pythia.readString(std::string("Beams:eB = "+std::to_string(pythia.particleData.m0(1000060120)/12)));
   // Tune parameters read from apprentice/template.dat in each tune folder
   // MultipartonInteractions:pT0Ref, StringZ:aLund, StringZ:bLund 
-  for (int i=2; i<5 ++i) {
-    pythia.settings.readString(std:string(argv[i]));
+  for (int i=2; i<5; ++i) {
+    pythia.settings.readString(std::string(argv[i]));
   }
   // TODO add BeamRemnants:dampPopcorn and StringFlav:popcornRate parameters to template
 
