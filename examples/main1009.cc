@@ -15,6 +15,9 @@ int main(int argc, char *argv[]) {
 
   if (argc<=1) {
     std::cout << "argc<=1" << '\n';
+    if (argc==4) {
+      std::cout << "argc==4" << '\n'; 
+    }
     return 1; 
   }
 
@@ -22,7 +25,7 @@ int main(int argc, char *argv[]) {
 
   // Logfile initialization
   const bool doLog = true;
-  string out = std::string("main1009_tune2_")+std::string(argv[1])+std::string("_")+std::to_string(nEvents);
+  string out = "main1009_tune2_"+std::string(argv[1])+"_"+std::to_string(nEvents);
   ofstream logBuf;
   std::streambuf* oldCout;
   if(doLog) {
@@ -37,12 +40,12 @@ int main(int argc, char *argv[]) {
   pythia.readString("Beams:frameType = 2");
   pythia.readString("Beams:eA = 158");
   pythia.readString("Beams:eB = "+std::to_string(pythia.particleData.m0(1000060120)/12));
-  std::cout << "Beams:eB = "+std::to_string(pythia.particleData.m0(1000060120)/12) << '\n';
+  std::cout << "Beams:eB = " << pythia.particleData.m0(1000060120)/12 << '\n';
   // Tune parameters read from apprentice/template.dat in each tune folder
   // MultipartonInteractions:pT0Ref, StringZ:aLund, StringZ:bLund 
   for (int i=2; i<5; ++i) {
     pythia.settings.readString(std::string(argv[i]));
-    std::cout <<"Check for (i=2; i<5; i++): i = " << i << ", argv[i] = " << std::string(argv[i]) << '\n';
+    std::cout <<"Check for (i=2; i<5; i++): i = " << i << ", argv[i] = " << argv[i] << '\n';
   }
   // TODO add BeamRemnants:dampPopcorn and StringFlav:popcornRate parameters to template
 
