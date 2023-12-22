@@ -176,7 +176,7 @@ else
 endif
 
 # RIVET (if RIVET use C++14).
-main111: $(PYTHIA) $$@.cc
+main111 main1003: $(PYTHIA) $$@.cc
 ifeq ($(RIVET_USE),true)
 	$(CXX) $@.cc -o $@ -w $(CXX_COMMON:c++11=c++14) -DRIVET\
 	 $(shell $(RIVET_BIN)$(RIVET_CONFIG) --cppflags --libs) $(RIVET_RPATH)
