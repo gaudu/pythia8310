@@ -8,18 +8,22 @@
 
 using namespace Pythia8;
 
-int main() {
+int main(int argc, char *argv[]) {
+  
+  if (argc<=1) {
+    std::cout << "argc<=1" << '\n';
+    return 1; 
+  } 
 
   int nEvents = 1000;
-  constexpr int nCases = 10; 
-  vector<string> caseLabels = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" };
+  constexpr int nCases = 1; 
   
   float sigmaGenval[nCases];
   float sigmaErrval[nCases];
   
   // Logfile initialization.
   const bool doLog = true;  
-  string out = "main1004_pO";      
+  string out = std::string("main1004_pO_")+argv[1];      
   ofstream logBuf;
   std::streambuf* oldCout;
   if(doLog) {
@@ -29,7 +33,7 @@ int main() {
   
   for (int iCase = 0; iCase < nCases; ++iCase) {
   
-    string initEnergy = "1e"+caseLabels[iCase]; 
+    string initEnergy = std::string("1e")+argv[1]; 
     string initPrefix = "main1004_pO_"+initEnergy;
 
     Pythia pythia;
