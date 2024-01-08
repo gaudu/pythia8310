@@ -39,8 +39,8 @@ int main(int argc, char *argv[]) {
   pythia.readString("Beams:idB = 1000060120");
   pythia.readString("Beams:frameType = 2");
   pythia.readString("Beams:eA = 158");
-  pythia.readString("Beams:eB = "+std::to_string(pythia.particleData.m0(1000060120)/12));
-  std::cout << "Beams:eB = " << pythia.particleData.m0(1000060120)/12 << '\n';
+  // Use proton mass as a bug fix to initialize Angantyr (carbon mass/12 does not work)
+  pythia.readString("Beams:eB = "+std::to_string(pythia.particleData.m0(2212));
   // Tune parameters read from apprentice/template.dat in each tune folder
   // MultipartonInteractions:pT0Ref, StringZ:aLund, StringZ:bLund 
   for (int i=2; i<5; ++i) {
