@@ -15,17 +15,17 @@ int main(int argc, char *argv[]) {
 
   if (argc<=1) {
     std::cout << "argc<=1" << '\n';
-    if (argc==4) {
-      std::cout << "argc==4" << '\n'; 
+    if (argc==5) {
+      std::cout << "argc==5" << '\n'; 
     }
     return 1; 
   }
 
-  int nEvents = 100;
+  int nEvents = 10000;
 
   // Logfile initialization
   const bool doLog = true;
-  string out = "main1009_tune2_"+std::string(argv[1])+"_"+std::to_string(nEvents);
+  string out = "main1009_tune2_"+std::string(argv[1])+"_"+std::string(argv[2])+"_"+std::to_string(nEvents);
   ofstream logBuf;
   std::streambuf* oldCout;
   if(doLog) {
@@ -38,12 +38,12 @@ int main(int argc, char *argv[]) {
   pythia.readString("Beams:idA = -211");
   pythia.readString("Beams:idB = 1000060120");
   pythia.readString("Beams:frameType = 2");
-  pythia.readString("Beams:eA = 158");
+  pythia.readString("Beams:eA = "+std::string(argv[1]));
   // Use proton mass as a bug fix to initialize Angantyr (carbon mass/12 does not work)
   pythia.readString("Beams:eB = "+std::to_string(pythia.particleData.m0(2212)));
   // Tune parameters read from apprentice/template.dat in each tune folder
   // MultipartonInteractions:pT0Ref, StringZ:aLund, StringZ:bLund 
-  for (int i=2; i<5; ++i) {
+  for (int i=3; i<6; ++i) {
     pythia.settings.readString(std::string(argv[i]));
     std::cout <<"Check for (i=2; i<5; i++): i = " << i << ", argv[i] = " << argv[i] << '\n';
   }
