@@ -1,0 +1,21 @@
+#!/bin/bash
+
+tune_folder_path="~/APPRENTICE/bin/tune/"
+
+if [ -d "$tune_folder_path" ]; then
+    folders=$(find "$tune_folder_path" -mindepth 1 -maxdepth 1 -type d | wc -l)
+
+    for ((i=0; i<$folders; i++)); do
+        formatted_i=$(printf "%02d" $i)
+        
+        sbatch \
+            --partition=normal \
+            --mail-type="ALL" \
+            --mail-user="gaudu@uni-wuppertal.de" \
+            --array=$formatted_i \
+            --job-name="main1009_tune_$formatted_i"\
+            -- ~/pleiades_apprentice_script.sh
+    done    
+else
+    echo "folder not found: $tune_folder_path"
+fi
