@@ -25,7 +25,7 @@ for ((i=0; i<$folders; i++)); do
         lines[j]=${lines[j]// /}
     done
 	    
-    ./main1009 158 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]} && ./main1009 350 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]}
+    ./main1009 158 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]} ${lines[3]} ${lines[4]} && ./main1009 350 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]} ${lines[3]} ${lines[4]}
 
     cat main1009_tune_158_"$formatted_i"_10000.yoda main1009_tune_350_"$formatted_i"_10000.yoda > main1009_tune_"$formatted_i"_10000.yoda
     cp main1009_tune_"$formatted_i"_10000.yoda $tune_folder/$formatted_i/main1009_tune_"$formatted_i"_10000.yoda

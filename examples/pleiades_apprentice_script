@@ -16,7 +16,7 @@ if [ -d "$tune_folder_path" ]; then
             lines[j]=${lines[j]// /}
         done 
 
-        ./main1009 158 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]} && ./main1009 350 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]}
+        ./main1009 158 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]} ${lines[3]} ${lines[4]} && ./main1009 350 $formatted_i ${lines[0]} ${lines[1]} ${lines[2]} ${lines[3]} ${lines[4]}
     else
         echo "File not found: $template_path"
     fi

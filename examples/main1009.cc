@@ -1,4 +1,5 @@
-// Authors: Marius Utheim <marius.m.utheim@jyu.fi>, Chloé Gaudu <gaudu@uni-wuppertal.de>
+// Authors: Marius Utheim <marius.m.utheim@jyu.fi>;
+//          Chloé Gaudu <gaudu@uni-wuppertal.de>
 
 // Keyword: analysis; rivet; hA collisions; tuning; apprentice
 
@@ -15,8 +16,8 @@ int main(int argc, char *argv[]) {
 
   if (argc<=1) {
     std::cout << "argc<=1" << '\n';
-    if (argc==5) {
-      std::cout << "argc==5" << '\n'; 
+    if (argc==7) {
+      std::cout << "argc==7" << '\n'; 
     }
     return 1; 
   }
@@ -42,12 +43,12 @@ int main(int argc, char *argv[]) {
   // Use proton mass as a bug fix to initialize Angantyr (carbon mass/12 does not work)
   pythia.readString("Beams:eB = "+std::to_string(pythia.particleData.m0(2212)));
   // Tune parameters read from apprentice/template.dat in each tune folder
-  // MultipartonInteractions:pT0Ref, StringZ:aLund, StringZ:bLund 
-  for (int i=3; i<6; ++i) {
+  // MultipartonInteractions:pT0Ref, StringZ:aLund, StringZ:bLund
+  // BeamRemnants:dampPopcorn, StringFlav:popcornRate
+  for (int i=3; i<8; ++i) {
     pythia.settings.readString(std::string(argv[i]));
     std::cout <<"Check for (i=2; i<5; i++): i = " << i << ", argv[i] = " << argv[i] << '\n';
   }
-  // TODO add BeamRemnants:dampPopcorn and StringFlav:popcornRate parameters to template
 
   if (!pythia.init()) {
     cout << "Pythia failed to initialize." << endl;
