@@ -2,7 +2,7 @@
 
 cd ~/PYTHIA/pythia8310/examples/
 
-tune_folder_path="~/APPRENTICE/bin/tune/"
+tune_folder_path="/beegfs/gaudu/APPRENTICE/bin/tune/"
 
 if [ -d "$tune_folder_path" ]; then
     formatted_i=$(printf "%02d" $SLURM_ARRAY_TASK_ID)

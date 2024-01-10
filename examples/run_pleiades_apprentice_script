@@ -3,7 +3,7 @@
 cd ~/PYTHIA/pythia8310/examples/
 make main1009
 
-tune_folder_path="~/APPRENTICE/bin/tune/"
+tune_folder_path="/beegfs/gaudu/APPRENTICE/bin/tune/"
 
 if [ -d "$tune_folder_path" ]; then
     folders=$(find "$tune_folder_path" -mindepth 1 -maxdepth 1 -type d | wc -l)
