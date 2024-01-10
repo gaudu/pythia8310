@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
   // BeamRemnants:dampPopcorn, StringFlav:popcornRate
   for (int i=3; i<8; ++i) {
     pythia.settings.readString(std::string(argv[i]));
-    std::cout <<"Check for (i=2; i<5; i++): i = " << i << ", argv[i] = " << argv[i] << '\n';
+    std::cout <<"Check for (i=3; i<8; i++): i = " << i << ", argv[i] = " << argv[i] << '\n';
   }
 
   if (!pythia.init()) {
