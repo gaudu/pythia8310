@@ -5,7 +5,9 @@ cd ~/PYTHIA/pythia8310/examples/
 tune_folder_path="/beegfs/gaudu/APPRENTICE/bin/tune/"
 
 if [ -d "$tune_folder_path" ]; then
-    formatted_i=$(printf "%02d" $SLURM_ARRAY_TASK_ID)
+
+    // TODO %02d if only 10 folders (00 to 09), %03d if only 100 folders (000 to 099)
+    formatted_i=$(printf "%03d" $SLURM_ARRAY_TASK_ID)
     template_path=$tune_folder_path"$formatted_i/template.dat"
     
     if [ -e "$template_path" ]; then
