@@ -3,8 +3,9 @@
 
 // Keyword: analysis; rivet; hA collisions; tuning; apprentice
 
-// Usage: ./main1009 TuneFolderNumber parA parB parC
-// Can be run using ./apprentice_script
+// Usage: ./main1009 Beams:eB TuneFolderNumber parA parB parC parD parE
+// Can be run using ./run_pleiades_apprentice_script on Pleiades
+//                  ./apprentice_script
 
 #include "Pythia8/HeavyIons.h"
 #include "Pythia8/Pythia.h"
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
 
   // Logfile initialization
   const bool doLog = true;
-  string out = "main1009_tune2_"+std::string(argv[1])+"_"+std::string(argv[2])+"_"+std::to_string(nEvents);
+  string out = "main1009_tune_"+std::string(argv[1])+"_"+std::string(argv[2])+"_"+std::to_string(nEvents);
   ofstream logBuf;
   std::streambuf* oldCout;
   if(doLog) {
