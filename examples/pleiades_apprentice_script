@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd ~/PYTHIA/pythia8310/examples/
-make main1009
 
 tune_folder_path="~/APPRENTICE/bin/tune/"
 
