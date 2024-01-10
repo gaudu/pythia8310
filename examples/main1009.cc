@@ -5,7 +5,7 @@
 
 // Usage: ./main1009 Beams:eB TuneFolderNumber parA parB parC parD parE
 // Can be run using ./run_pleiades_apprentice_script on Pleiades
-//                  ./apprentice_script
+//                  ./apprentice_script locally
 
 #include "Pythia8/HeavyIons.h"
 #include "Pythia8/Pythia.h"
