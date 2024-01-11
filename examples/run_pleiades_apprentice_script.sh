@@ -15,7 +15,7 @@ if [ -d "$tune_folder_path" ]; then
             --mail-user="gaudu@uni-wuppertal.de" \
             --array=0-$i \
             --job-name="main1009_tune"\
-            -- /beegfs/gaudu/pleiades_apprentice_script.sh 
+            -- ~/pleiades_apprentice_script.sh 
 else
     echo "folder not found: $tune_folder_path"
 fi
