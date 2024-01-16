@@ -20,9 +20,10 @@ int main() {
   int nEvents = 1000000;
   constexpr int nCases = 2; 
   vector<string> caseLabels = { "158", "350" };
-  string out = "main1003_1M";
-  
+    
   for (int iCase = 0; iCase < nCases; ++iCase) {
+
+    string out = "main1003_"+caseLabels[iCase]+"_1M";
 
     // Pythia configuration.
     Pythia pythia;
