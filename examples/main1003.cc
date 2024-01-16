@@ -17,9 +17,10 @@ using namespace Pythia8;
 int main() {
 
   // Run settings.
-  int nEvents = 1000;
+  int nEvents = 1000000;
   constexpr int nCases = 2; 
   vector<string> caseLabels = { "158", "350" };
+  string out = "main1003_1M";
   
   for (int iCase = 0; iCase < nCases; ++iCase) {
 
@@ -32,7 +33,7 @@ int main() {
       pythia.readString("Beams:eA = 158.");
     else
     	pythia.readString("Beams:eA = 350.");
-    pythia.readString("Beams:eB = 0.93827"); // mass_proton ~= mass_carbon/12
+    pythia.readString("Beams:eB = "+std::to_string(pythia.particleData.m0(2212))); // mass_proton ~= mass_carbon/12
 
     // Parameters to reuse initialization.
     pythia.readString("MultipartonInteractions:reuseInit = 3");
@@ -49,7 +50,7 @@ int main() {
     }
 
     // Rivet initialization.
-    Pythia8Rivet rivet(pythia, "main1003.yoda");
+    Pythia8Rivet rivet(pythia, out + ".yoda");
     rivet.ignoreBeams(true);
     rivet.addAnalysis("NA61SHINE_2022_I2155140");
 
