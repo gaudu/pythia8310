@@ -53,14 +53,19 @@ int main(int argc, char *argv[]) {
 
   pythia.readString("Beams:frameType = 2");
   pythia.readString("Beams:eA = 1e" + std::string(argv[3]));
-  // parm  Beams:eB   (default = 7000.; minimum = 0.)
-  // The energy of the second incoming particle, moving in the -z direction, to be set if Beams:frameType = 2.
-  // If the particle energy is smaller than its mass it is assumed to be at rest. 
-  //
+  // "the beam energy of a nucleus is specified by giving the energy per nucleon"
   // use proton mass as a bug fix to initialize Angantyr (carbon mass/12 does not work)
   // does it always do m(proton)*Z for every Beams:idB? (H,C,N,O,Ar)
   //pythia.readString("Beams:eB =" + std::to_string(pythia.particleData.m0(2212)));
+  //
+  // parm  Beams:eB   (default = 7000.; minimum = 0.)
+  // The energy of the second incoming particle, moving in the -z direction, to be set if Beams:frameType = 2.
+  // If the particle energy is smaller than its mass it is assumed to be at rest. 
   pythia.readString("Beams:eB = 0.");
+  
+  pythia.readString("SoftQCD:all = on");
+  // use Angantyr for minimum-bias pp collisions
+  pythia.readString("HeavyIon:mode = 2");
 
   if (!pythia.init()) {
     cout << "Pythia failed to initialize." << endl;
