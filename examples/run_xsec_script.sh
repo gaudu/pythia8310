@@ -7,6 +7,6 @@ make main1010
             --partition=normal \
             --mail-type="ALL" \
             --mail-user="gaudu@uni-wuppertal.de" \
-            --array=8-21 \
+            --array=2-12 \
             --job-name="main1010_xsec"\
             -- ~/xsec_script.sh 
