@@ -56,13 +56,13 @@ int main(int argc, char *argv[]) {
   // "the beam energy of a nucleus is specified by giving the energy per nucleon"
   // use proton mass as a bug fix to initialize Angantyr (carbon mass/12 does not work)
   // does it always do m(proton)*Z for every Beams:idB? (H,C,N,O,Ar)
-  //pythia.readString("Beams:eB =" + std::to_string(pythia.particleData.m0(2212)));
+  pythia.readString("Beams:eB =" + std::to_string(pythia.particleData.m0(2212)));
   //
   // parm  Beams:eB   (default = 7000.; minimum = 0.)
   // The energy of the second incoming particle, moving in the -z direction, to be set if Beams:frameType = 2.
   // If the particle energy is smaller than its mass it is assumed to be at rest. 
-  pythia.readString("Beams:eB = 0.");
-  
+  //pythia.readString("Beams:eB = 0.");
+
   pythia.readString("SoftQCD:all = on");
   // use Angantyr for minimum-bias pp collisions
   pythia.readString("HeavyIon:mode = 2");
@@ -78,6 +78,8 @@ int main(int argc, char *argv[]) {
   for ( int iEvent = 0; iEvent < nEvents; ++iEvent ) { 
     if (!pythia.next()) continue;
   }
+
+  pythia.stat();
 
   xz << "elab" << '\t' << argv[3] << '\n';
   xz << "proj_id" << '\t' << argv[1] << '\n';
@@ -98,8 +100,6 @@ int main(int argc, char *argv[]) {
   xz << "err_XX" << '\t' << pythia.info.sigmaErr(105) << '\n';
   xz << "sig_AXB" << '\t' << pythia.info.sigmaGen(106) << '\n';
   xz << "err_AXB" << '\t' << pythia.info.sigmaErr(106) << '\n';
-
-  pythia.stat();
   
   // logfile output
   if (doLog) std::cout.rdbuf(oldCout);
