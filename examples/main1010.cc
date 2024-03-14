@@ -8,10 +8,26 @@
 
 #include "Pythia8/HeavyIons.h"
 #include "Pythia8/Pythia.h"
-#include <map>
 #include <cmath>
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <vector>
+
+template <typename K, typename V>
+void printMap(const std::map<K, V>& m) {
+    for (const auto& pair : m) {
+        std::cout << "Key: " << pair.first << ", Value: " << pair.second << std::endl;
+    }
+}
+template <typename K, typename V>
+std::vector<K> getMapKeys(const std::map<K, V>& inputMap) {
+    std::vector<K> keys;
+    for (const auto& pair : inputMap) {
+        keys.push_back(pair.first);
+    }
+    return keys;
+}
 
 using namespace Pythia8;
 
@@ -79,7 +95,28 @@ int main(int argc, char *argv[]) {
     if (!pythia.next()) continue;
   }
 
+  /*std::cout << "Contents of sigGenM:" << std::endl;
+  printMap(pythia.info.sigGenM);
+  std::cout << "Contents of sigErrM:" << std::endl;
+  printMap(pythia.info.sigErrM);*/
+  
+  std::vector<int> sigGenMKeys = getMapKeys(pythia.info.sigGenM);
+  std::vector<int> sigErrMKeys = getMapKeys(pythia.info.sigErrM);
+  /*for (const auto& key : sigGenMKeys) {
+  	std::cout << "sigGenMKeys" << std::endl;
+        std::cout << key << std::endl;
+    } 
+  for (const auto& key : sigErrMKeys) {
+  	std::cout << "sigErrMKeys" << std::endl;
+        std::cout << key << std::endl;
+    }*/
+
   pythia.stat();
+
+  if (!xz.is_open()) {
+    std::cerr << "Error: failed to open file for writing." << std::endl;
+    return 1; 
+  }
 
   xz << "elab" << '\t' << argv[3] << '\n';
   xz << "proj_id" << '\t' << argv[1] << '\n';
@@ -100,6 +137,14 @@ int main(int argc, char *argv[]) {
   xz << "err_XX" << '\t' << pythia.info.sigmaErr(105) << '\n';
   xz << "sig_AXB" << '\t' << pythia.info.sigmaGen(106) << '\n';
   xz << "err_AXB" << '\t' << pythia.info.sigmaErr(106) << '\n';
+
+  if (!xz) {
+    std::cerr << "Error: failed to write data to the file." << std::endl;
+    return 1; 
+  }
+  
+  xz.close();
+  std::cout << "Data written to output file successfully." << std::endl;
   
   // logfile output
   if (doLog) std::cout.rdbuf(oldCout);
