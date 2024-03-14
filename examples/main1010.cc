@@ -51,8 +51,8 @@ int main(int argc, char *argv[]) {
   std::map<std::string, std::string> idB_map = {
     {"2212", "1H"}, {"1000060120", "12C"}, {"1000070140", "14N"}, {"1000080160", "16O"}, {"1000180400", "40Ar"}
     };
-  std::map<std::int, std::string> subprocess_map = {
-    {"101", "nd"}, {"102", "el"}, {"103", "XB"}, {"104", "AX"}, {"105", "XX"}, {"106", "AXB"}
+  std::map<int, std::string> subprocess_map = {
+    {101, "nd"}, {102, "el"}, {103, "XB"}, {104, "AX"}, {105, "XX"}, {106, "AXB"}
     };
 
   // logfile initialization
@@ -82,12 +82,12 @@ int main(int argc, char *argv[]) {
   // If the particle energy is smaller than its mass it is assumed to be at rest. 
   //pythia.readString("Beams:eB = 0.");
 
-  pythia.readString("SoftQCD:all = on");
+  //pythia.readString("SoftQCD:all = on");
   // use Angantyr for minimum-bias pp collisions
   pythia.readString("HeavyIon:mode = 2");
 
   if (!pythia.init()) {
-    cout << "Pythia failed to initialize." << endl;
+    std::cout << "Pythia failed to initialize." << std::endl;
     return -1;
   }
 
@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
   xz << "err_tot" << '\t' << pythia.info.sigmaErr(0) << '\n';
   for (const auto& key : sigGenMKeys) {
         std::string label_sig = "sig_" + subprocess_map[key];
-        std::string label_err = "err_" + subprocessMap[key];
+        std::string label_err = "err_" + subprocess_map[key];
         xz << label_sig << '\t' << pythia.info.sigmaGen(key) << '\n';
         xz << label_err << '\t' << pythia.info.sigmaGen(key) << '\n';
     }
