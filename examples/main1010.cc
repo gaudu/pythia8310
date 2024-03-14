@@ -51,6 +51,9 @@ int main(int argc, char *argv[]) {
   std::map<std::string, std::string> idB_map = {
     {"2212", "1H"}, {"1000060120", "12C"}, {"1000070140", "14N"}, {"1000080160", "16O"}, {"1000180400", "40Ar"}
     };
+  std::map<std::int, std::string> subprocess_map = {
+    {"101", "nd"}, {"102", "el"}, {"103", "XB"}, {"104", "AX"}, {"105", "XX"}, {"106", "AXB"}
+    };
 
   // logfile initialization
   const bool doLog = true;
@@ -101,7 +104,7 @@ int main(int argc, char *argv[]) {
   printMap(pythia.info.sigErrM);*/
   
   std::vector<int> sigGenMKeys = getMapKeys(pythia.info.sigGenM);
-  std::vector<int> sigErrMKeys = getMapKeys(pythia.info.sigErrM);
+  //std::vector<int> sigErrMKeys = getMapKeys(pythia.info.sigErrM);
   /*for (const auto& key : sigGenMKeys) {
   	std::cout << "sigGenMKeys" << std::endl;
         std::cout << key << std::endl;
@@ -123,20 +126,17 @@ int main(int argc, char *argv[]) {
   xz << "targ_id" << '\t' << argv[2] << '\n';
   xz << "sig_tot" << '\t' << pythia.info.sigmaGen(0) << '\n';
   xz << "err_tot" << '\t' << pythia.info.sigmaErr(0) << '\n';
-  xz << "sig_el" << '\t' << pythia.info.sigmaGen(102) << '\n';
-  xz << "err_el" << '\t' << pythia.info.sigmaErr(102) << '\n';
+  for (const auto& key : sigGenMKeys) {
+        std::string label_sig = "sig_" + subprocess_map[key];
+        std::string label_err = "err_" + subprocessMap[key];
+        xz << label_sig << '\t' << pythia.info.sigmaGen(key) << '\n';
+        xz << label_err << '\t' << pythia.info.sigmaGen(key) << '\n';
+    }
+  bool has102 = std::find(sigGenMKeys.begin(), sigGenMKeys.end(), 102) != sigGenMKeys.end();
+  if (has102) {
   xz << "sig_inel" << '\t' << pythia.info.sigmaGen(0) - pythia.info.sigmaGen(102) << '\n';
   xz << "err_inel" << '\t' << sqrt(pow(pythia.info.sigmaErr(0),2) + pow(pythia.info.sigmaErr(102),2)) << '\n';
-  xz << "sig_nd" << '\t' << pythia.info.sigmaGen(101) << '\n';
-  xz << "err_nd" << '\t' << pythia.info.sigmaErr(101) << '\n';
-  xz << "sig_XB" << '\t' << pythia.info.sigmaGen(103) << '\n';
-  xz << "err_XB" << '\t' << pythia.info.sigmaErr(103) << '\n';
-  xz << "sig_AX" << '\t' << pythia.info.sigmaGen(104) << '\n';
-  xz << "err_AX" << '\t' << pythia.info.sigmaErr(104) << '\n';
-  xz << "sig_XX" << '\t' << pythia.info.sigmaGen(105) << '\n';
-  xz << "err_XX" << '\t' << pythia.info.sigmaErr(105) << '\n';
-  xz << "sig_AXB" << '\t' << pythia.info.sigmaGen(106) << '\n';
-  xz << "err_AXB" << '\t' << pythia.info.sigmaErr(106) << '\n';
+  }
 
   if (!xz) {
     std::cerr << "Error: failed to write data to the file." << std::endl;
