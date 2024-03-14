@@ -71,7 +71,8 @@ int main(int argc, char *argv[]) {
   pythia.readString("Beams:idB = " + std::string(argv[2]));
 
   pythia.readString("Beams:frameType = 2");
-  pythia.readString("Beams:eA = 1e" + std::string(argv[3]));
+  string eA = std::to_string(pow(10, std::stoi(argv[3])));
+  pythia.readString("Beams:eA = " + eA);
   // "the beam energy of a nucleus is specified by giving the energy per nucleon"
   // use proton mass as a bug fix to initialize Angantyr (carbon mass/12 does not work)
   // does it always do m(proton)*Z for every Beams:idB? (H,C,N,O,Ar)
@@ -121,7 +122,7 @@ int main(int argc, char *argv[]) {
     return 1; 
   }
 
-  xz << "elab" << '\t' << argv[3] << '\n';
+  xz << "elab" << '\t' << "1e"+std::string(argv[3]) << '\n';
   xz << "proj_id" << '\t' << argv[1] << '\n';
   xz << "targ_id" << '\t' << argv[2] << '\n';
   xz << "sig_tot" << '\t' << pythia.info.sigmaGen(0) << '\n';
