@@ -9,4 +9,4 @@ make main1010
             --mail-user="gaudu@uni-wuppertal.de" \
             --array=2-12 \
             --job-name="main1010_xsec"\
-            -- ~/xsec_script.sh 
+            -- ~/pleiades_xsec_script.sh 
