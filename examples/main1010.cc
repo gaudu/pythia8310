@@ -4,7 +4,7 @@
 
 // Usage: ./main1010 Beams:idA Beams:idB Beams:eA Beams:eB
 // can be run using ./run_pleiades_xsec_script on Pleiades
-//                  ./xsec_script locally
+//                  ./pleiades_xsec_script locally
 
 #include "Pythia8/HeavyIons.h"
 #include "Pythia8/Pythia.h"
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     return 1; 
   }
 
-  int nEvents = 1000;
+  int nEvents = 1e5;
   std::map<std::string, std::string> idA_map = {
     {"2212", "p"}, {"-2212", "ap"}, {"2112", "n"}, {"-2112", "an"},
     {"111", "pi0"}, {"211", "pip"}, {"-211", "pim"},
