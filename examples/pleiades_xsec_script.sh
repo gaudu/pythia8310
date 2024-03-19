@@ -6,11 +6,11 @@ idA=(2212 -2212 2112 -2112 111 211 -211 311 321 -321 130 310 3122 3212 3222 3112
 idB=(2212 1000060120 1000070140 1000080160 1000180400)
 lab_energy=$SLURM_ARRAY_TASK_ID # in GeV
 
-for idA in "${idA[@]}"; do
+for id1 in "${idA[@]}"; do
 
-    for idB in "${idB[@]}"; do
+    for id2 in "${idB[@]}"; do
 
-        ./main1010 $idA $idB $lab_energy
+        ./main1010 $id1 $id2 $lab_energy
 
     done
 done
