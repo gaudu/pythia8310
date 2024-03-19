@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
 
   // logfile initialization
   const bool doLog = true;
-  std::string out = "main1010_"+idA_map[std::string(argv[1])]+"_"+idB_map[std::string(argv[2])]+"_"+std::string(argv[3])+"_"+std::to_string(nEvents);
+  std::string out = "main1010_"+idA_map[std::string(argv[1])]+"_"+idB_map[std::string(argv[2])]+"_1e"+std::string(argv[3])+"_"+std::to_string(nEvents);
   ofstream logBuf;
   std::streambuf* oldCout;
   if(doLog) {
