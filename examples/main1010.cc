@@ -2,7 +2,7 @@
 
 // Keyword: analysis; hA collisions; cross-section
 
-// Usage: ./main1010 Beams:idA Beams:idB Beams:eA Beams:eB
+// Usage: ./main1010 Beams:idA Beams:idB Beams:eA
 // can be run using ./run_pleiades_xsec_script on Pleiades
 //                  ./pleiades_xsec_script locally
 
@@ -131,7 +131,7 @@ int main(int argc, char *argv[]) {
         std::string label_sig = "sig_" + subprocess_map[key];
         std::string label_err = "err_" + subprocess_map[key];
         xz << label_sig << '\t' << pythia.info.sigmaGen(key) << '\n';
-        xz << label_err << '\t' << pythia.info.sigmaGen(key) << '\n';
+        xz << label_err << '\t' << pythia.info.sigmaErr(key) << '\n';
     }
   bool has102 = std::find(sigGenMKeys.begin(), sigGenMKeys.end(), 102) != sigGenMKeys.end();
   if (has102) {
